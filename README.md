@@ -65,3 +65,13 @@ Create a console application with the following inputs and outputs:
 
  The certificate validity, e.g. 15.6.2021
 
+### Phase 2
+
+Add logging capabilities to the application. For each request following information has to be logged to a file. The filename and path should be stored in an environment variable called CC_LOGPATH (e.g. CC_LOGPATH=/var/log/certchecker.log). In case CC_LOGPATH is empty, use the path where the application is running. All log entries are appended to the same file for the day. Each file has the following format for the name certchecker_2021_09_30.log and is created on a daily basis. The log contains the URL requested, the response code from the target and the certificate validity data. If any error occures, report the error message with a status HTTP status code (e.g. 500,404, etc.)/or timeout in case the site is not reachable.
+Introduce another environment variable CC_LOGRETENTION to introduce log rotation (delete logs older than X days). If no values is specified delete logs older than 30 days.
+
+- **Environments variables**
+  
+  CC_LOGPATH - the path where logs are stored. Default is currrent directory
+
+  CC_LOGRETENTION - the duration in days for how long the old logs are kept. Default is 30 days
